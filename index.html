@@ -59,14 +59,14 @@
                 return;
             }
 
-            axios.post('https://server-with-database.herokuapp.com//signup', {
+            axios.post('https://server-with-database.herokuapp.com/signup', {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
                 password: password,
                 repeatPassword: repeatPassword
             })
-
+            
                 .then(function (response) {
                     console.log(response.data);
 
