@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="main">
@@ -41,7 +42,7 @@
         <div id="message"></div>
         <br>
         <br>
-        <div>Already have an account? <a href="login.html">Login</a> </div>
+        <!-- <div>Already have an account? <a href="login.html">Login</a> </div> -->
 
     </div>
     
@@ -58,7 +59,7 @@
                 document.querySelector("#message").innerHTML = `Password donot match , please try again`
                 return;
             }
-
+            
             axios.post('https://server-with-database.herokuapp.com/signup', {
                 firstName: firstName,
                 lastName: lastName,
