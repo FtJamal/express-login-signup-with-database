@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <h1>Signup Form</h1>
+        <br>
+
+        <form onsubmit="signup(); return false">
+            <div id="form">
+                <label for="firstName">First Name</label>
+                <input type="text" required id="firstName" placeholder="First Name">
+                
+                <br>
+                <label for="lastName">Last Name</label>
+                <input type="text" required id="lastName"placeholder="Last Name">
+                
+                <br>
+                <label for="email">Email</label>
+                <input type="email" required id="email"placeholder="Email">
+                <br>
+                <label for="password">Password</label>
+                <input type="password" required id="password"placeholder="Password">
+                <br>
+                <label for="repeatPassword">Repeat Password</label>
+                <input type="password" required id="repeatPassword"placeholder="Repeat Password">
+                <br>
+                <br>
+                <button type="submit">Signup</button>
+                <br>
+                <br>
+            </div>
+        </form>
+        <br>
+        <br>
+        <div id="message"></div>
+        <br>
+        <br>
+        <div>Already have an account? <a href="login.html">Login</a> </div>
+
+    </div>
+    
+    <script>
+
+        function signup() {
+            let firstName = document.querySelector("#firstName").value
+            let lastName = document.querySelector("#lastName").value
+            let email = document.querySelector("#email").value
+            let password = document.querySelector("#password").value
+            let repeatPassword = document.querySelector("#repeatPassword").value
+
+            if (password !== repeatPassword) {
+                document.querySelector("#message").innerHTML = `Password donot match , please try again`
+                return;
+            }
+
+            axios.post('https://server-with-database.herokuapp.com//signup', {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                repeatPassword: repeatPassword
+            })
+
+                .then(function (response) {
+                    console.log(response.data);
+
+                    document.querySelector("#message").innerHTML = response.data.message;
+                })
+
+                .catch(function (error) {
+                    console.log(error.response.data);
+                    document.querySelector("#message").innerHTML = error.response.data.message;
+                });
+
+
+
+        }
+
+
+    </script>
+
+</body>
+</html>
